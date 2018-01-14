@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 """ ------------------------------------------------------------------------------------------------------
     My code
@@ -16,4 +17,4 @@ class Photo(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('Photo-detail', args=[str(self.id)])
+        return reverse('photo-detail', args=[str(self.id)])
