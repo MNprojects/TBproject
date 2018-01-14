@@ -30,11 +30,12 @@ urlpatterns = [
     My Code
 ------------------------------------------------------------------------------------------------------ """
 
+
 from django.urls import include, path
 from django.views.generic import RedirectView
 
 
 urlpatterns += [
     path('submissions/', include('submissions.urls')),
-    path('',RedirectView.as_view(url='/home/', permanent = True)),
+    path('',RedirectView.as_view(url='/submissions/', permanent = True)),
 ]
