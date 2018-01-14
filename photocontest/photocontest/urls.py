@@ -38,8 +38,5 @@ from django.views.generic import RedirectView
 urlpatterns += [
     path('submissions/', include('submissions.urls')),
     path('',RedirectView.as_view(url='/submissions/', permanent = True)),
-<<<<<<< HEAD
     path('accounts/', include('django.contrib.auth.urls')),
-=======
->>>>>>> e2dfe55a16193e1d6935313e63bd9054e32efd75
 ]
