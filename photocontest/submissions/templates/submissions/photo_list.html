@@ -1,29 +1,27 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>Photo List</h1>
-
-    {% if photo_list %}
-    <ul>
-
-      {% for photo in photo_list %}
-      <div class="row">
-          <div class="col-md-4">
-            <div class="thumbnail">
-              <a href="{{ photo.photo.url }}">
-                <img src="{{ photo.photo.url }}" alt="Lights" style="width:100%">
-                <div class="caption">
-                  <p><a href="{{ photo.get_absolute_url }}">{{ photo.name }}</a></p>
-                  <p>{{photo.caption}}</p>
-                </div>
-              </a>
-            </div>
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for photo in filter.qs %}
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="{{ photo.photo.url }}">
+          <img src="{{ photo.photo.url }}" style="width:100%">
+          <div class="caption">
+            <p><a href="{{ photo.get_absolute_url }}">{{ photo.name }}</a></p>
+            <p>{{photo.caption}}</p>
+            <p><a href="https://www.facebook.com/sharer/sharer.php?u={{ photo.get_absolute_url }}">Share on Facebook</a></p>
+            <p><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ photo.photo.url }}">Tweet</a></p>
+            <p><a href="mailto:?subject=Interesting%20photo&amp;body=localhost:8000{{ photo.photo.url }}">Send as an email</a></p> 
           </div>
-
-      {% endfor %}
-
-    </ul>
-    {% else %}
-      <p>There are currently no photos.</p>
-    {% endif %}       
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+  </ul>
 {% endblock %}

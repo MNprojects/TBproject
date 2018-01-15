@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 from .forms import SignUpForm
 from django.contrib.auth import login, authenticate
 from .forms import PhotoForm
+from .filters import PhotoFilter
 
 
 
@@ -31,23 +32,14 @@ def index(request):
 
 
 
-class PhotoListView(generic.ListView):
-    model = Photo
-    paginate_by = 10
 
-    def get_queryset(self):
-        filter_val = self.request.GET.get('filter', '2018-01-14')
-        order = self.request.GET.get('orderby', 'dateTaken')
-        new_context = Photo.objects.filter(
-            dateTaken=filter_val,
-        ).order_by(order)
-        return new_context
 
-    def get_context_data(self, **kwargs):
-        context = super(PhotoListView, self).get_context_data(**kwargs)
-        context['filter'] = self.request.GET.get('filter', '2018-01-01')
-        context['orderby'] = self.request.GET.get('orderby', 'dateTaken')
-        return context
+def PhotoListView(request):
+    photo_list = Photo.objects.all()
+    photo_filter = PhotoFilter(request.GET, queryset=photo_list)
+    return render(request, 'submissions/photo_list.html', {'filter': photo_filter})
+
+    
 
 class PhotoDetailView(generic.DetailView):
     model = Photo
@@ -82,3 +74,4 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+

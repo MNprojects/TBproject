@@ -78,6 +78,7 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'photos' %}">Gallery</a></li>
           <li><a href="{% url 'upload' %}">Upload</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
           <li>User: {{ user.get_username }}</li>
           <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
         {% else %}
