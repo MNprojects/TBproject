@@ -42,6 +42,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns += [
+
     path('submissions/', include('submissions.urls')),
     path('',RedirectView.as_view(url='/submissions/', permanent = True)),
     path('accounts/', include('django.contrib.auth.urls')),
