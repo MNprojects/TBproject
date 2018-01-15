@@ -4,7 +4,29 @@
 <h1>Contact Us</h1>
 
 <div>
-    <form method="post"></form>
+    <form name="contact us" id="contact us" method="post">
+        <p>
+            <label for="name">Name: </label>
+            <input id="name" type="text" name="name_field" placeholder="Your name">
+        </p>
+
+        <p>
+            <label for="email">Email: </label>
+            <input id="email" type="text" name="email_field" placeholder="Your email">
+        </p>
+
+        <p>
+            <label for="phone">Phone number: </label>
+            <input id="phone" type="text" name="number_field" placeholder="Your contact number">
+        </p>
+
+        <p>
+            <textarea id="comments" type="text" name="comments_field" placeholder="Any comments" rows="10"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
 </div>
 
 {% endblock %}
