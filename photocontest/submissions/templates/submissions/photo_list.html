@@ -7,9 +7,19 @@
     <ul>
 
       {% for photo in photo_list %}
-      <li>
-        <a href="{{ photo.get_absolute_url }}">{{ photo.name }}</a> ({{photo.caption}})
-      </li>
+      <div class="row">
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <a href="{{ photo.photo.url }}">
+                <img src="{{ photo.photo.url }}" alt="Lights" style="width:100%">
+                <div class="caption">
+                  <p><a href="{{ photo.get_absolute_url }}">{{ photo.name }}</a></p>
+                  <p>{{photo.caption}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
       {% endfor %}
 
     </ul>
